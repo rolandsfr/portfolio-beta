@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap");
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Lora";
+}
+
+p,
+li,
+span,
+i {
+  font-size: 1.6rem;
+}
