@@ -43,9 +43,13 @@ const getScreenInfo: () => ScreenSize = () => {
 };
 
 const useScreenSize: () => ScreenSize = () => {
-  const [screenInfo, setScreenInfo] = useState<ScreenSize>({
-    deviceType: getScreenInfo().deviceType,
-    orientation: getScreenInfo().orientation,
+  useEffect;
+  const [screenInfo, setScreenInfo] = useState<{
+    deviceType: DeviceType | null;
+    orientation: Orientation | null;
+  }>({
+    deviceType: null,
+    orientation: null,
   });
 
   const resizeFunction = () => {
@@ -54,6 +58,7 @@ const useScreenSize: () => ScreenSize = () => {
 
   useEffect(() => {
     window.addEventListener("resize", resizeFunction);
+    setScreenInfo(getScreenInfo());
 
     return () => {
       window.removeEventListener("resize", resizeFunction);
@@ -61,8 +66,8 @@ const useScreenSize: () => ScreenSize = () => {
   }, []);
 
   return {
-    deviceType: screenInfo.deviceType,
-    orientation: screenInfo.orientation,
+    deviceType: screenInfo.deviceType as DeviceType,
+    orientation: screenInfo.orientation as Orientation,
   };
 };
 

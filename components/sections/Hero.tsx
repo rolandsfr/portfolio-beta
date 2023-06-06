@@ -3,7 +3,7 @@ import { Container } from "../../styled/misc";
 import Cta from "../blocks/Cta";
 import Image from "next/image";
 import useScreenSize from "../../hooks/useScreenSize";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const Section = styled.section`
   position: relative;
@@ -184,7 +184,7 @@ const Section = styled.section`
       width: 95%;
       left: 50%;
       transform: translateX(-50%);
-      top: 3em;
+      top: 0em;
 
       div.background-container {
         border-top-right-radius: 0px;
@@ -201,12 +201,11 @@ const Section = styled.section`
     }
 
     .info {
-      margin-top: 20vh;
-    }
+      height: auto;
 
-    .name {
-      top: -28.5vh;
-      position: absolute;
+      h1 {
+        margin-top: 0;
+      }
     }
   }
 
@@ -250,10 +249,23 @@ const Section = styled.section`
 `;
 
 const Hero: React.FC = () => {
+  const { deviceType, orientation } = useScreenSize();
+  const imageSection = useRef<HTMLDivElement | null>(null);
+
   return (
     <Section>
       <Container>
-        <div className="info">
+        <div
+          className="info"
+          style={
+            deviceType == "tablet" || deviceType == "mobile"
+              ? {
+                  marginTop:
+                    (imageSection.current?.clientHeight as number) + 100,
+                }
+              : {}
+          }
+        >
           <h1 data-scroll data-scroll-speed={1.5}>
             Providing luxurious quality web experiences is my <b>duty</b> rather
             than a hobby.
@@ -272,6 +284,7 @@ const Hero: React.FC = () => {
           <div className="image-wrapper">
             <div className="background-container">
               <div
+                ref={imageSection}
                 className="background"
                 data-scroll
                 data-scroll-speed={2}
