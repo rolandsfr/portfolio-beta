@@ -51,42 +51,60 @@ const Section = styled.section`
     position: absolute;
     right: 0;
     z-index: 0;
-    bottom: -9em;
-    width: 100%;
+    height: 100%;
+    width: 450px;
 
     .image-wrapper {
       position: relative;
       overflow: hidden;
-      width: 550px;
-      height: 880px;
+      width: 100%;
+      height: 100%;
     }
 
     @media only screen and (min-width: 1024px) and (min-height: 800px) {
       .image-wrapper {
         position: absolute;
         overflow: hidden;
-        width: 550px;
-        height: 880px;
-        right: 1.5em;
+        width: 100%;
+        height: 85%;
+        right: 0;
+        bottom: 0;
       }
+    }
+
+    .background-container {
+      width: 100%;
+      height: 95%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: green;
+      border-top-right-radius: 170px;
+      border-top-left-radius: 170px;
+      overflow: hidden;
+      background-image: url("/lnb_background.jpg");
+      background-size: 300%;
     }
 
     .background {
       width: 100%;
       height: 100%;
       position: absolute;
-      left: 0;
-      top: 0;
-      background-image: url("/lnb_background.jpg");
-      background-size: cover;
-      border-top-right-radius: 170px;
-      border-top-left-radius: 170px;
+      bottom: 0;
     }
+
     .foreground {
       position: absolute;
-      left: 0%;
-      bottom: 13%;
-      transform: scale(2);
+      right: 0;
+      bottom: 50px;
+      height: 350px;
+      width: 500px !important;
+
+      img {
+        width: 100%;
+        height: 100% !important;
+        transform: scale(1.5) !important;
+      }
     }
   }
 
@@ -96,6 +114,7 @@ const Section = styled.section`
     display: flex;
     align-items: center;
   }
+
   @media only screen and (min-height: 1000px) {
     .image {
       top: 53% !important;
@@ -382,15 +401,15 @@ const Hero: React.FC = () => {
 
         <div className="image">
           <div className="image-wrapper">
-            <div className="background"></div>
-            <div className="foreground">
-              <Image
+            <div className="background-container">
+              <div
+                className="background"
                 data-scroll
-                data-scroll-speed={0.5}
-                src="/lnb_foreground.png"
-                width={5168}
-                height={3448}
-              />
+                data-scroll-speed={2}
+              ></div>
+            </div>
+            <div className="foreground" data-scroll data-scroll-speed={-0.5}>
+              <Image alt="Self" src="/lnb_foreground.png" layout="fill" />
             </div>
           </div>
         </div>
