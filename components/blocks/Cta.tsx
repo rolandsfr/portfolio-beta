@@ -39,6 +39,11 @@ const CtaContainer = styled.div`
     z-index: 3;
   }
 
+  a {
+    color: #000;
+    text-decoration: none !important;
+  }
+
   .underline {
     width: 100%;
     height: 1px;
