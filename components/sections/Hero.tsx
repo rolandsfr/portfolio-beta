@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Container } from "../../styled/misc";
 import Cta from "../blocks/Cta";
 import Image from "next/image";
+import useScreenSize from "../../hooks/useScreenSize";
+import { useEffect } from "react";
 
 const Section = styled.section`
   position: relative;
@@ -61,6 +63,64 @@ const Section = styled.section`
       height: 100%;
     }
 
+    @media only screen and (max-width: 1025px) {
+      min-height: auto !important;
+      .name {
+        order: 1;
+        margin-top: 0em;
+      }
+
+      h1 {
+        order: 2;
+        font-size: 2.5rem;
+        width: 100% !important;
+        margin-top: 58vh;
+      }
+
+      .info {
+        justify-content: right !important;
+        height: auto !important;
+      }
+
+      ${Container} {
+        flex-direction: column;
+      }
+
+      .cta-wrapper {
+        order: 3;
+        margin-top: 1.5em;
+        width: 100%;
+        margin-bottom: 5em;
+
+        .overlay {
+          width: 5em;
+          left: 8em;
+        }
+
+        & > div {
+          width: 100%;
+        }
+      }
+
+      .image,
+      .image-wrapper {
+        height: 50vh !important;
+        width: 100% !important;
+        padding-right: 15px;
+        padding-left: 15px;
+        top: 4.7em !important;
+      }
+
+      .foreground {
+        transform: scale(1.6);
+        bottom: 4em !important;
+      }
+
+      .background {
+        opacity: 0.08;
+      }
+    }
+
     @media only screen and (min-width: 1024px) and (min-height: 800px) {
       .image-wrapper {
         position: absolute;
@@ -78,7 +138,6 @@ const Section = styled.section`
       position: absolute;
       left: 0;
       bottom: 0;
-      background-color: green;
       border-top-right-radius: 170px;
       border-top-left-radius: 170px;
       overflow: hidden;
@@ -98,12 +157,12 @@ const Section = styled.section`
       right: 0;
       bottom: 50px;
       height: 350px;
-      width: 500px !important;
+      width: 500px;
 
       img {
         width: 100%;
-        height: 100% !important;
-        transform: scale(1.5) !important;
+        height: 100%;
+        transform: scale(1.5);
       }
     }
   }
@@ -115,108 +174,39 @@ const Section = styled.section`
     align-items: center;
   }
 
-  @media only screen and (min-height: 1000px) {
-    .image {
-      top: 53% !important;
-    }
-
-    .info {
-      margin-top: -5em;
-    }
-  }
-
-  @media only screen and (min-width: 1025px) {
-    .image {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  @media only screen and (max-width: 1025px) {
-    min-height: auto !important;
-    .name {
-      order: 1;
-      margin-top: 0em;
-    }
-
-    h1 {
-      order: 2;
-      font-size: 2.5rem;
-      width: 100% !important;
-      margin-top: 58vh;
-    }
-
-    .info {
-      justify-content: right !important;
-      height: auto !important;
-    }
-
-    ${Container} {
-      flex-direction: column;
-    }
-
-    .cta-wrapper {
-      order: 3;
-      margin-top: 1.5em;
+  // tablet portrait mode & phone
+  @media only screen and (min-width: 320px) and (min-height: 400px) and (max-width: 900px) {
+    .image-wrapper {
       width: 100%;
-      margin-bottom: 5em;
+    }
 
-      .overlay {
-        width: 5em;
-        left: 8em;
+    .image {
+      width: 95%;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 3em;
+
+      div.background-container {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        height: 100%;
+        top: 0 !important;
       }
 
-      & > div {
-        width: 100%;
+      .foreground {
+        img {
+          transform: scale(0.9);
+        }
       }
     }
 
-    .image,
-    .image-wrapper {
-      height: 50vh !important;
-      width: 100% !important;
-      padding-right: 15px;
-      padding-left: 15px;
-      top: 4.7em !important;
+    .info {
+      margin-top: 20vh;
     }
 
-    .foreground {
-      transform: scale(1.6) !important;
-      bottom: 4em !important;
-    }
-
-    .background {
-      border-radius: 0 !important;
-      opacity: 0.08;
-    }
-  }
-
-  @media only screen and (max-width: 920px) and (max-height: 450px) {
-    .image-wrapper {
-      height: 80vh !important;
-    }
-
-    h1 {
-      margin-top: 100vh;
-    }
-
-    .foreground {
-      transform: scale(0.8) !important;
-      bottom: -30vh !important;
-    }
-  }
-
-  @media only screen and (max-width: 920px) and (min-height: 1000px) {
     .name {
-      margin-top: 5em !important;
-    }
-
-    h1 {
-      margin-top: 55vh !important;
-    }
-
-    .foreground {
-      transform: scale(1.2) !important;
+      top: -28.5vh;
+      position: absolute;
     }
   }
 
@@ -227,127 +217,6 @@ const Section = styled.section`
 
     .image {
       margin-top: 5em;
-    }
-  }
-
-  @media only screen and (max-width: 1025px) and (max-height: 768px) {
-    .image {
-      height: 49vh !important;
-      width: 100% !important;
-      padding-right: 15px;
-      padding-left: 15px;
-      /* top: 45% !important; */
-    }
-
-    .image-wrapper {
-      margin-top: -0.4em !important;
-    }
-
-    .name {
-      /* margin-top: 13em !important; */
-    }
-
-    .info {
-      width: 94%;
-    }
-
-    .foreground {
-      /* top: 0em; */
-      bottom: -60% !important;
-      transform: scale(1) !important;
-    }
-  }
-
-  @media only screen and (max-width: 540px) and (max-height: 740px) {
-    .foreground {
-      /* top: 0em; */
-      bottom: 1em !important;
-      transform: scale(1.3) !important;
-    }
-  }
-
-  @media only screen and (min-width: 768px) and (min-height: 768px) and (max-width: 1024px) {
-    min-height: 100vh;
-
-    .image-wrapper {
-      height: 70vh !important;
-    }
-
-    .foreground {
-      /* top: 0em; */
-      bottom: 1em !important;
-      transform: scale(1.3) !important;
-    }
-
-    h1 {
-      margin-top: 76vh !important;
-    }
-
-    .cta {
-      width: auto !important;
-    }
-  }
-
-  @media only screen and (min-width: 1024px) and (max-height: 768px) {
-    h1 {
-      margin-top: 75vh !important;
-    }
-
-    .foreground {
-      transform: scale(1.1) !important ;
-      margin-bottom: -10em;
-    }
-  }
-
-  @media only screen and (max-width: 300px) and (min-height: 600px) {
-    .image {
-      margin-top: 9vh;
-    }
-
-    .foreground {
-      transform: scale(2) !important;
-      margin-bottom: 4em;
-    }
-
-    .name {
-      h2 {
-        line-height: 1.3;
-      }
-      p {
-        margin-top: 0.4em;
-      }
-    }
-  }
-
-  @media only screen and (min-width: 1024px) and (max-height: 800px) {
-    .image-wrapper {
-      height: 67vh !important;
-    }
-
-    .foreground {
-      margin-bottom: -25em !important;
-    }
-  }
-
-  @media only screen and (min-width: 1200px) and (max-height: 800px) {
-    .name {
-      margin-top: 7em !important;
-    }
-
-    .image {
-      bottom: -8em !important;
-    }
-
-    .image-wrapper {
-      height: 80vh !important;
-    }
-
-    .foreground {
-      margin-bottom: 0em !important;
-    }
-
-    h1 {
-      margin-top: 20vh !important;
     }
   }
 
